@@ -21,13 +21,18 @@ namespace app_wpf_blackjack {
         private Game game;
         private ElementManager elmManager;
         private BetManager betManager;
+        private CardEngine cardEngine;
+
         public MainWindow() {
             InitializeComponent();
 
-            //Sends elements from XAML file
+            //sends elements from XAML file
             this.elmManager = new ElementManager(drawBtn, holdBtn, splitBtn, userTotal, dealerTotal, updateText);
             this.betManager = new BetManager(betText, scoreText, up_25, up_50, up_100);
-            this.game = new Game(elmManager, betManager);
+            this.cardEngine = new CardEngine(userCards, dealerCards);
+
+            //initializes the program
+            this.game = new Game(this.elmManager, this.betManager, this.cardEngine);
 
         }
 

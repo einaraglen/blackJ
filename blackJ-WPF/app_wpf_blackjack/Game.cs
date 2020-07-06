@@ -14,16 +14,18 @@ namespace blackJ {
         private HandManager handManager;
         private ElementManager elmManager;
         private BetManager betManager;
+        private CardEngine cardEngine;
 
         private bool roundIsOver;
         private bool start;
         private bool issplit;
 
-        public Game(ElementManager elmManager, BetManager betManager) {
+        public Game(ElementManager elmManager, BetManager betManager, CardEngine cardEngine) {
 
             this.handManager = new HandManager();
             this.betManager = betManager;
             this.elmManager = elmManager;
+            this.cardEngine = cardEngine;
 
             this.roundIsOver = false;
             this.issplit = false;

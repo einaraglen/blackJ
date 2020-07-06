@@ -41,7 +41,7 @@
                             <RowDefinition Height="50" x:Name="ubot_c"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#7D3C98" Margin="10 5 20 5">
+                        <StackPanel x:Name="userCards" Grid.Row="1" Orientation="Horizontal" Background="#7D3C98" Margin="10 5 20 5">
                             <!-- Build Action: Resource, Copy if newer -->
                             <!-- current card build, needs to be created in the c# code
                                 <Image Stretch="UniformToFill" Margin="2 10 2 10"  Source="resources/1_of_clubs.png" />
@@ -74,7 +74,7 @@
                             <RowDefinition Height="50" x:Name="bot_c"/>
                         </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#7D3C98" Margin="20 5 10 5">
+                        <StackPanel x:Name="dealerCards" Grid.Row="1" Orientation="Horizontal" Background="#7D3C98" Margin="20 5 10 5">
 
                             <!--<Image Width="83" Height="144" Source="resources/bg.png" RenderTransformOrigin="0.487,0.556"></Image>
                                 -->
