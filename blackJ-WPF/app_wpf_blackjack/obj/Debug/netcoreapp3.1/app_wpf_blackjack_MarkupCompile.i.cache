@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-C:\Users\monga\Documents\projects\cs\blackJ-WPF\app_wpf_blackjack\obj\Debug\netcoreapp3.1\
+C:\Users\monga\Documents\projects\cs\blackJ_repo\blackJ-WPF\app_wpf_blackjack\obj\Debug\netcoreapp3.1\
 app_wpf_blackjack
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\monga\Documents\projects\cs\blackJ-WPF\app_wpf_blackjack\App.xaml
+C:\Users\monga\Documents\projects\cs\blackJ_repo\blackJ-WPF\app_wpf_blackjack\App.xaml
 11151548125
 
 11-227351616
 1921654412462
 MainWindow.xaml;
 
-True
+False
 

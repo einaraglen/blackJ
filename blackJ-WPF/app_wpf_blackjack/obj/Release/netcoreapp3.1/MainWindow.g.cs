@@ -181,7 +181,7 @@ namespace app_wpf_blackjack {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/app_wpf_blackjack;V1.0.0.0;component/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/app_wpf_blackjack;component/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
