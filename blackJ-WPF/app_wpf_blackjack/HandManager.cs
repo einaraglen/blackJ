@@ -89,6 +89,18 @@ namespace blackJ {
             return (getUserTotal() == 21);
         }
 
+        public List<int> getUserHand() {
+            return this.userHand;        
+        }
+
+        public List<int> getSplitHand() {
+            return this.splitHand;
+        }
+
+        public List<int> getDealerHand() {
+            return this.dealerHand;        
+        }
+
         public bool isSplittable() {
             if(this.isSplit) {
                 return true;

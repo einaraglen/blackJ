@@ -80,11 +80,12 @@ namespace blackJ {
             else {
 
                 this.elmManager.setUserTotal(this.handManager.getUserTotal().ToString());
+                this.cardEngine.updateUserCards(this.handManager.getUserHand());
             
             }
 
             this.elmManager.setDealerTotal(this.handManager.getDealerTotal().ToString());
-       
+            this.cardEngine.updateDealerCards(this.handManager.getDealerHand());
         } 
 
 
