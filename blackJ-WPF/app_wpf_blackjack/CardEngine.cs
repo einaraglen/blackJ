@@ -15,10 +15,12 @@ namespace app_wpf_blackjack {
         private StackPanel userCards;
         private StackPanel dealerCards;
 
-        private String PATH = "resources/images/";
-        public String[] faces = {"hearts", "spades", "diamonds", "clubs"};
+        //readonly keyword used for noneditable field
 
-        public Card[] stack;
+        private readonly String PATH = "resources/images/";
+        private readonly String[] faces = {"hearts", "spades", "diamonds", "clubs"};
+
+        private Card[] stack;
 
         public CardEngine(StackPanel userCards, StackPanel dealerCards) { 
 
@@ -38,8 +40,6 @@ namespace app_wpf_blackjack {
         }
 
         public void updateCards(List<int> indexes, StackPanel elm) {
-
-            Console.WriteLine(indexes.ToArray().Length);
 
             elm.Children.Clear();
 

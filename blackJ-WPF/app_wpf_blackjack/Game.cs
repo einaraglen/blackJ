@@ -66,6 +66,10 @@ namespace blackJ {
         
         }
 
+        public bool splitVal() {
+            return this.issplit;
+        }
+
         private void update() {
 
             if(this.issplit) {
@@ -126,7 +130,7 @@ namespace blackJ {
 
         public void split() {
             this.elmManager.enableDraw(true);
-            this.elmManager.enableHold(true);
+            this.elmManager.enableHold(false);
             this.elmManager.enableSplit(false);
 
             this.issplit = true;

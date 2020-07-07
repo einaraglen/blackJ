@@ -38,36 +38,76 @@ namespace app_wpf_blackjack {
 
         public void handle_size(object sender, RoutedEventArgs e) {
 
-            //Console.WriteLine(App_Window.ActualHeight);
+            //Console.WriteLine(App_Window.ActualHeight); split_row is new row to be handled
 
             GridLength star = new GridLength(1, GridUnitType.Star);
             GridLength small = new GridLength(50);
             GridLength medium = new GridLength(80);
 
-            if(App_Window.ActualHeight > 660) {
-                utop_c.Height = star;
-                ubot_c.Height = star;
+            bool split = game.splitVal();
 
-                top_c.Height = star;
-                bot_c.Height = star;
+            if(App_Window.ActualHeight > 660) {
+
+                setUserAndSplitGridLength(star, split);
+
+                setDealerGridLength(star);
+
             }
 
             else if(App_Window.ActualHeight > 590) {
-                utop_c.Height = medium;
-                ubot_c.Height = medium;
 
-                top_c.Height = medium;
-                bot_c.Height = medium;
+                setUserAndSplitGridLength(medium, split);
+
+                setDealerGridLength(medium);
+
             }
 
             else {
-                utop_c.Height = small;
-                ubot_c.Height = small;
 
-                top_c.Height = small;
-                bot_c.Height = small;
+                setUserAndSplitGridLength(small, split);
+
+                setDealerGridLength(small);
+
             }
 
+        }
+
+        private void setUserAndSplitGridLength(GridLength length, bool split) {
+            if(!split) {
+                split_row.Height = new GridLength(0);
+                this.utop_c.Height = length;
+                this.ubot_c.Height = length;
+            }
+
+            else {
+                GridLength under = new GridLength(length.Value / 3);
+                GridLength med = new GridLength(App_Window.ActualHeight / 8);
+                GridLength over = new GridLength(App_Window.ActualHeight / 6);
+
+                split_row.Height = new GridLength(1, GridUnitType.Star);
+
+                if (App_Window.ActualHeight > 800) {
+                    this.utop_c.Height = over;
+                    this.ubot_c.Height = over;
+                }
+
+                else if(App_Window.ActualHeight > 660) {
+                    this.utop_c.Height = med;
+                    this.ubot_c.Height = med;
+                }
+
+                else {
+                    this.utop_c.Height = under;
+                    this.ubot_c.Height = under;
+                }
+        
+            }
+            
+        }
+
+        private void setDealerGridLength(GridLength length) {
+            this.top_c.Height = length;
+            this.bot_c.Height = length;
         }
 
         //Event handlers bet

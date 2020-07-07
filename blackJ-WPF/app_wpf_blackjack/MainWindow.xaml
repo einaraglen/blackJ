@@ -38,6 +38,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" x:Name="utop_c"/>
                             <RowDefinition />
+                            <RowDefinition x:Name="split_row" Height="*"/>
                             <RowDefinition Height="50" x:Name="ubot_c"/>
                         </Grid.RowDefinitions>
 
@@ -49,7 +50,26 @@
 
                         </StackPanel>
 
+                        <StackPanel x:Name="splitCards" Grid.Row="2" Orientation="Horizontal" Background="#7D3C98" Margin="10 5 20 5">
+
+                        </StackPanel>
+
+                        <!-- max min button grid -->
+                        <Grid Grid.Row="3" ShowGridLines="False" Visibility="Collapsed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="1" VerticalAlignment="Top" Cursor="Hand" Height="45" Margin="5 5 5 5">Max</Button>
+                            <Button Grid.Column="2" VerticalAlignment="Top" Cursor="Hand" Height="45" Margin="5 5 5 5">Min</Button>
+                            
+                        </Grid>
+
                     </Grid>
+                    
 
                     <!-- score label -->
                     <Label x:Name="userTotal" Grid.Row="1" Grid.Column="0" Margin="0 0 20 0" Foreground="#FFF" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right">
