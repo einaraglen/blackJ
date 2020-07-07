@@ -134,9 +134,13 @@ namespace blackJ {
             int split = getSplitTotal();
             int dealer = getDealerTotal();
 
-            int best = 0;
+            int best = 0; 
 
-            if (user > split || split > 21) {
+            if(user > 21) {
+                best = split;
+            }
+
+            else if (user > split || split > 21) {
                 best = user;
             } 
             
@@ -179,6 +183,14 @@ namespace blackJ {
 
         public int getUserTotal() {
             return totalOf(this.userHand, false);
+        }
+
+        public int getUserMax() {
+            this.max = true;
+            int total = totalOf(this.userHand, false);
+            this.max = false;
+
+            return total;
         }
 
         public int getSplitTotal() {

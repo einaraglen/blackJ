@@ -45,6 +45,22 @@ namespace app_wpf_blackjack {
             updateCards(dealerHand, this.dealerCards);
         }
 
+        public void addBackside() {
+            Image img = new Image();
+
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(this.PATH + "backside.png", UriKind.Relative);
+            bitmap.EndInit();
+
+            img.Stretch = Stretch.Fill;
+            img.Stretch = Stretch.UniformToFill;
+            img.Margin = new Thickness(2, 10, 2, 10);
+            img.Source = bitmap;
+
+            this.dealerCards.Children.Add(img);
+        }
+
         public void updateCards(List<int> indexes, StackPanel elm) {
 
             elm.Children.Clear();

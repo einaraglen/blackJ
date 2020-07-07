@@ -29,7 +29,7 @@ namespace app_wpf_blackjack {
             InitializeComponent();
 
             //sends elements from XAML file
-            this.elmManager = new ElementManager(drawBtn, holdBtn, splitBtn, userTotal, dealerTotal, updateText);
+            this.elmManager = new ElementManager(drawBtn, holdBtn, splitBtn, userTotal, dealerTotal, updateText, max_buttons, btn_max, btn_min);
             this.betManager = new BetManager(betText, scoreText, up_25, up_50, up_100);
             this.cardEngine = new CardEngine(userCards, splitCards, dealerCards);
             this.rsHandler = new ResizingHandler(utop_c, ubot_c, top_c, bot_c, split_row);
@@ -38,18 +38,20 @@ namespace app_wpf_blackjack {
             this.game = new Game(this.elmManager, this.betManager, this.cardEngine, this.rsHandler);
 
         }
+        public void handle_max(object sender, RoutedEventArgs e) {
+            this.game.setMax(true);
+        }
+
+        public void handle_min(object sender, RoutedEventArgs e) {
+            this.game.setMax(false);
+        }
 
         public void handle_size(object sender, RoutedEventArgs e) {
 
-            //Console.WriteLine(App_Window.ActualHeight); split_row is new row to be handled
+            //Console.WriteLine(App_Window.ActualHeight);
 
             this.game.resize(App_Window.ActualHeight);
             
-        }
-
-        private void setDealerGridLength(GridLength length) {
-            this.top_c.Height = length;
-            this.bot_c.Height = length;
         }
 
         //Event handlers bet

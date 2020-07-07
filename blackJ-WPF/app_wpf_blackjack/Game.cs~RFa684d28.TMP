@@ -154,8 +154,6 @@ namespace blackJ {
             this.betManager.incrementBet(25);
 
             this.elmManager.updateStatus("start");
-
-            updateDealer(false);
         }
 
         public void hold() {

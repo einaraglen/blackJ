@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace app_wpf_blackjack {
@@ -14,12 +15,20 @@ namespace app_wpf_blackjack {
         private Label dealerTotal;
         private Label updateText;
 
+        private Grid maxmin;
+
+        private Button max;
+        private Button min;
+
         public ElementManager(Button drawButton, 
             Button holdButton, 
             Button splitButton, 
             Label userTotal, 
             Label dealerTotal,
-            Label updateText) {
+            Label updateText,
+            Grid maxmin,
+            Button max,
+            Button min) {
 
             this.drawButton = drawButton;
             this.holdButton = holdButton;
@@ -28,7 +37,29 @@ namespace app_wpf_blackjack {
             this.userTotal = userTotal;
             this.dealerTotal = dealerTotal;
             this.updateText = updateText;
+
+            this.maxmin = maxmin;
+
+            this.max = max;
+            this.min = min;
  
+        }
+
+        public void setMaxContent(int max, int min) {
+            this.max.Content = "Max (" + max.ToString() + ")";
+            this.min.Content = "Min (" + min.ToString() + ")";
+        }
+
+        public void maxVisable(bool visable) {
+
+            if(visable) {
+                this.maxmin.Visibility = Visibility.Visible;
+            }
+
+            else {
+                this.maxmin.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         //Content setters
