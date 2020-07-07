@@ -15,17 +15,19 @@ namespace blackJ {
         private ElementManager elmManager;
         private BetManager betManager;
         private CardEngine cardEngine;
+        private ResizingHandler resizer;
 
         private bool roundIsOver;
         private bool start;
         private bool issplit;
 
-        public Game(ElementManager elmManager, BetManager betManager, CardEngine cardEngine) {
+        public Game(ElementManager elmManager, BetManager betManager, CardEngine cardEngine, ResizingHandler resizer) {
 
             this.handManager = new HandManager();
             this.betManager = betManager;
             this.elmManager = elmManager;
             this.cardEngine = cardEngine;
+            this.resizer = resizer;
 
             this.roundIsOver = false;
             this.issplit = false;
@@ -64,11 +66,12 @@ namespace blackJ {
 
             }
         
-        }
+        } 
 
-        public bool splitVal() {
-            return this.issplit;
-        }
+        public void resize(double window) {
+            //cast to int for easier manipulation
+            this.resizer.resize((int)window);
+        } 
 
         private void update() {
 
@@ -76,6 +79,9 @@ namespace blackJ {
 
                 int user = this.handManager.getUserTotal();
                 int split = this.handManager.getSplitTotal();
+
+                this.cardEngine.updateUserCards(this.handManager.getUserHand());
+                this.cardEngine.updateSplitCards(this.handManager.getSplitHand());
 
                 this.elmManager.setUserTotal(user.ToString() + " | " + split.ToString());
 
@@ -101,6 +107,7 @@ namespace blackJ {
 
             this.roundIsOver = false;
             this.issplit = false;
+            this.resizer.setIsSplit(this.issplit);
             this.start = true;
 
             this.betManager.reset(this.handManager.getResults()); ;
@@ -130,10 +137,11 @@ namespace blackJ {
 
         public void split() {
             this.elmManager.enableDraw(true);
-            this.elmManager.enableHold(false);
+            this.elmManager.enableHold(true);
             this.elmManager.enableSplit(false);
 
             this.issplit = true;
+            this.resizer.setIsSplit(this.issplit);
 
             //does to splitting
             this.handManager.drawUser(this.issplit);

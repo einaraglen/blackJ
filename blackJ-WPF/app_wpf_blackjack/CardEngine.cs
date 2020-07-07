@@ -13,6 +13,7 @@ namespace app_wpf_blackjack {
     class CardEngine {
 
         private StackPanel userCards;
+        private StackPanel splitCards;
         private StackPanel dealerCards;
 
         //readonly keyword used for noneditable field
@@ -22,9 +23,10 @@ namespace app_wpf_blackjack {
 
         private Card[] stack;
 
-        public CardEngine(StackPanel userCards, StackPanel dealerCards) { 
+        public CardEngine(StackPanel userCards, StackPanel splitCards, StackPanel dealerCards) { 
 
             this.userCards = userCards;
+            this.splitCards = splitCards;
             this.dealerCards = dealerCards;
 
             this.stack = createStack();
@@ -33,6 +35,10 @@ namespace app_wpf_blackjack {
 
         public void updateUserCards(List<int> userHand) {
             updateCards(userHand, this.userCards);
+        }
+
+        public void updateSplitCards(List<int> splitHand) {
+            updateCards(splitHand, this.splitCards);
         }
 
         public void updateDealerCards(List<int> dealerHand) {

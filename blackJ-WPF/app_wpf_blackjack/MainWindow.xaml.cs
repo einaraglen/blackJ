@@ -22,17 +22,20 @@ namespace app_wpf_blackjack {
         private ElementManager elmManager;
         private BetManager betManager;
         private CardEngine cardEngine;
+        private ResizingHandler rsHandler;
 
         public MainWindow() {
+            //Inits window
             InitializeComponent();
 
             //sends elements from XAML file
             this.elmManager = new ElementManager(drawBtn, holdBtn, splitBtn, userTotal, dealerTotal, updateText);
             this.betManager = new BetManager(betText, scoreText, up_25, up_50, up_100);
-            this.cardEngine = new CardEngine(userCards, dealerCards);
+            this.cardEngine = new CardEngine(userCards, splitCards, dealerCards);
+            this.rsHandler = new ResizingHandler(utop_c, ubot_c, top_c, bot_c, split_row);
 
             //initializes the program
-            this.game = new Game(this.elmManager, this.betManager, this.cardEngine);
+            this.game = new Game(this.elmManager, this.betManager, this.cardEngine, this.rsHandler);
 
         }
 
@@ -40,68 +43,7 @@ namespace app_wpf_blackjack {
 
             //Console.WriteLine(App_Window.ActualHeight); split_row is new row to be handled
 
-            GridLength star = new GridLength(1, GridUnitType.Star);
-            GridLength small = new GridLength(50);
-            GridLength medium = new GridLength(80);
-
-            bool split = game.splitVal();
-
-            if(App_Window.ActualHeight > 660) {
-
-                setUserAndSplitGridLength(star, split);
-
-                setDealerGridLength(star);
-
-            }
-
-            else if(App_Window.ActualHeight > 590) {
-
-                setUserAndSplitGridLength(medium, split);
-
-                setDealerGridLength(medium);
-
-            }
-
-            else {
-
-                setUserAndSplitGridLength(small, split);
-
-                setDealerGridLength(small);
-
-            }
-
-        }
-
-        private void setUserAndSplitGridLength(GridLength length, bool split) {
-            if(!split) {
-                split_row.Height = new GridLength(0);
-                this.utop_c.Height = length;
-                this.ubot_c.Height = length;
-            }
-
-            else {
-                GridLength under = new GridLength(length.Value / 3);
-                GridLength med = new GridLength(App_Window.ActualHeight / 8);
-                GridLength over = new GridLength(App_Window.ActualHeight / 6);
-
-                split_row.Height = new GridLength(1, GridUnitType.Star);
-
-                if (App_Window.ActualHeight > 800) {
-                    this.utop_c.Height = over;
-                    this.ubot_c.Height = over;
-                }
-
-                else if(App_Window.ActualHeight > 660) {
-                    this.utop_c.Height = med;
-                    this.ubot_c.Height = med;
-                }
-
-                else {
-                    this.utop_c.Height = under;
-                    this.ubot_c.Height = under;
-                }
-        
-            }
+            this.game.resize(App_Window.ActualHeight);
             
         }
 
