@@ -40,12 +40,10 @@ namespace blackJ {
 
         public void draw() {
 
-            bool back = false;
-
-            if(this.betManager.gameOver()) {
+            if (this.betManager.gameOver()) {
                 this.elmManager.updateStatus("game over");
             } 
-
+            
             else {
 
                 if (!this.roundIsOver) {
@@ -56,7 +54,7 @@ namespace blackJ {
                         firstRound();
                     } 
                     
-                    else {
+                    else { 
                         this.elmManager.maxVisable(false);
                         this.handManager.drawUser(this.issplit);
                     }
@@ -74,13 +72,13 @@ namespace blackJ {
                 update();
 
             }
-        
-        } 
+
+        }
 
         public void resize(double window) {
             //cast to int for easier manipulation
             this.resizer.resize((int)window);
-        } 
+        }
 
         public void setMax(bool enable) {
             this.handManager.setMax(enable);
@@ -99,7 +97,7 @@ namespace blackJ {
 
         private void update() {
 
-            if(this.issplit) {
+            if (this.issplit) {
 
                 int user = this.handManager.getUserTotal();
                 int split = this.handManager.getSplitTotal();
@@ -110,12 +108,12 @@ namespace blackJ {
                 this.elmManager.setUserTotal(user.ToString() + " | " + split.ToString());
 
             }
-
+            
             else {
 
                 this.elmManager.setUserTotal(this.handManager.getUserTotal().ToString());
                 this.cardEngine.updateUserCards(this.handManager.getUserHand());
-            
+
             }
 
             this.elmManager.setDealerTotal(this.handManager.getDealerTotal().ToString());
@@ -123,15 +121,15 @@ namespace blackJ {
 
         private void updateDealer(bool first) {
 
-            if(first) {
+            if (first) {
                 this.cardEngine.updateDealerCards(this.handManager.getDealerHand());
                 this.cardEngine.addBackside();
-            }
-
+            } 
+            
             else {
                 this.cardEngine.updateDealerCards(this.handManager.getDealerHand());
             }
-            
+
         }
 
 
@@ -146,7 +144,7 @@ namespace blackJ {
             this.start = true;
 
             this.betManager.reset(this.handManager.getResults());
- 
+
             this.betManager.enableBetButtons(true);
 
             this.handManager.clear();
@@ -159,17 +157,18 @@ namespace blackJ {
         }
 
         public void hold() {
-            while(this.handManager.getDealerTotal() <= 16) {
+            while (this.handManager.getDealerTotal() <= 16) {
                 this.handManager.drawDealer();
             }
 
             updateDealer(false);
+            update();
 
             this.roundIsOver = true;
 
             if (this.handManager.getResults().Equals("draw")) {
                 this.elmManager.updateStatus(this.handManager.getResults());
-            }
+            } 
             
             else {
                 this.elmManager.updateStatus(this.handManager.getResults() + " wins");
@@ -201,9 +200,11 @@ namespace blackJ {
 
             bool betConfirmed = this.betManager.incrementBet(bet);
 
-            if(!betConfirmed) {
+            if (!betConfirmed) {
                 this.elmManager.updateStatus("score not high enough");
-            } else {
+            } 
+            
+            else {
                 this.elmManager.updateStatus("bet +" + bet.ToString());
             }
 
@@ -213,27 +214,27 @@ namespace blackJ {
 
             this.elmManager.updateStatus("round started");
 
-            for(int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
 
-                if(i < 2) {
+                if (i < 2) {
                     this.handManager.drawUser(this.issplit);
-                }
-
+                } 
+                
                 else {
                     this.handManager.drawDealer();
                 }
 
             }
 
-            if(handManager.isSplittable()) {
+            if (handManager.isSplittable()) {
                 this.elmManager.updateStatus("split available");
 
                 this.elmManager.enableSplit(true);
                 //this.elmManager.enableDraw(false);
                 this.elmManager.enableHold(true);
-            }
-
-            else if(handManager.hasAce()) {
+            } 
+            
+            else if (handManager.hasAce()) {
                 this.elmManager.updateStatus("ace available");
 
                 this.elmManager.setMaxContent(this.handManager.getUserMax(), this.handManager.getUserTotal());
@@ -241,12 +242,12 @@ namespace blackJ {
                 this.elmManager.maxVisable(true);
                 this.elmManager.enableDraw(false);
                 this.elmManager.enableHold(false);
-            }
-
+            } 
+            
             else {
                 this.elmManager.enableHold(true);
             }
-
+            
             this.betManager.enableBetButtons(false);
             this.elmManager.drawContent("Draw");
             this.start = false;

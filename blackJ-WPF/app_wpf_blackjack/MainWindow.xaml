@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:app_wpf_blackjack"
         mc:Ignorable="d"
-        Title="blackJ" Height="550" Width="1000" MinHeight="550" MinWidth="1000" SizeChanged="handle_size" x:Name="App_Window">
+        Title="blackJ" Height="550" Width="1000" MinHeight="550" MinWidth="1000" SizeChanged="handle_size" Keyboard.KeyDown="App_Window_KeyDown" Keyboard.KeyUp="App_Window_KeyUp" x:Name="App_Window">
 
     <!--
         COLORS main #8E44AD light #A569BD dark #7D3C98

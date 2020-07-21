@@ -20,10 +20,6 @@ namespace blackJ {
             while(!unique) {
                 index = randomNumberFromTo(0, 51);
 
-                /*if(this.inplay.ToArray().Length == 52) {
-                    unique = true;
-                }*/
-
                 if(this.inplay.ToArray().Length == 0 || !this.inplay.Contains(index)) {
                     this.inplay.Add(index);
                     unique = true;
